@@ -9,6 +9,7 @@ class MLRegistry:
 		# get endpoint
 		endpoint, _ = Endpoint.objects.get_or_create(name=endpoint_name, owner=owner)
 
+		# get algorithm
 		database_object, algorithm_created = MLAlgorithm.objects.get_or_create(
 			name=algorithm_name, 
 			description=algorithm_description, 
@@ -23,4 +24,4 @@ class MLRegistry:
 			status.save()
 
 		# add to registry
-		self.endpoints[database_object] = algorithm_object
+		self.endpoints[database_object.id] = algorithm_object
